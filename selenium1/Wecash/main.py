@@ -15,7 +15,7 @@ if __name__ =='__main__':
     testunit = unittest.TestSuite()
     testunit.addTest(Test_Login('user_login1'))
     testunit.addTest(Test_Login('user_login2'))
-    testunit.addTest(Test_Login('user_login3'))
+    #testunit.addTest(Test_Login('user_login3'))
     #testunit.addTest(Test_Login('user_login4'))
     #testunit.addTest(Test_Login('user_login5'))
 

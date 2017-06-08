@@ -24,10 +24,12 @@ class LoginPage(BasePage):
     #Action输入用户名
     def set_username(self, username):
         name = self.driver.find_element(*LoginPage.username)
+        name.clear()
         name.send_keys(username)
     #输入密码
     def set_password(self, password):
         pwd = self.driver.find_element(*LoginPage.password)
+        pwd.clear()
         pwd.send_keys(password)
     #登录
     def click_login(self):
@@ -45,12 +47,8 @@ class LoginPage(BasePage):
     def sign_up(self):
         registerbtn = self.driver.find_element(*LoginPage.register)
         registerbtn.click()
-    #账号未输入提示语正确
-    def username_null(self):
-        if u'请输入手机号' in self.driver.page_source:
-            return True
-        else:
-            return False
+
+
 
 
 

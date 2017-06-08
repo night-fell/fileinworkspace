@@ -20,34 +20,31 @@ class Test_Login(unittest.TestCase):
         self.driver = webdriver.Chrome(chrome_options=options)
         # 打开指定URL
         self.driver.get("http://m.wecash.net/wep/user/login.html")
-    def tearDown(self):
-        self.driver.close()
+
 
     def user_login(self, username="", password=""):
-        login_page = LoginPage(self.driver)
-        login_page.set_username(username)
-        login_page.set_password(password)
+        LoginPage(self.driver).set_username(username)
+        LoginPage(self.driver).set_password(password)
         # 单击登录按钮
-        login_page.click_login()
-        time.sleep(5)
+        LoginPage(self.driver).click_login()
+        #time.sleep(5)
 
     def user_login1(self):
         """用户名为空"""
         self.user_login(password="opklnm")
         #time.sleep(2)
-        self.assertEqual(self.driver.current_url, u"http://m.wecash.net/wep/login/login.html")
-        #result = LoginPage.username_null()
-        #self.assertTrue(result)
+        #self.assertEqual(self.driver.current_url, u"http://m.wecash.net/wep/login/login.html")
+        self.assertTrue(u'请输入手机号' in self.driver.page_source)
     def user_login2(self):
         """密码为空"""
         self.user_login(username='13514284833')
-        time.sleep(2)
+        #time.sleep(2)
         self.assertEqual(self.driver.current_url, u"http://m.wecash.net/wep/login/login.html")
 
     def user_login3(self):
         """密码错误"""
         self.user_login(username='15110185703', password="111111")
-        time.sleep(2)
+        #time.sleep(2)
         self.assertEqual(self.driver.current_url, u"http://m.wecash.net/wep/login/login.html")
 
     def user_login4(self):
@@ -62,6 +59,8 @@ class Test_Login(unittest.TestCase):
         time.sleep(2)
         self.assertEqual(self.driver.find_element_by_xpath('//*[@id="app"]/footer/div[1]/div').text, u"闪银奇异")
 
+    #def tearDown(self):
+    #    self.driver.close()
 """
     def test_Login(self):
 
